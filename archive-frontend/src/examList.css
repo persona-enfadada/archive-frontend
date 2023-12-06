@@ -1,0 +1,14 @@
+ul, ol {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Additional styling for a specific list with a class */
+  /* ul.my-list { */
+    /* Add any additional styles for your custom list */
+  /* } */
+
+  ul li, ol li {
+    padding-bottom: 8px; /* Adjust the value as needed */
+  }

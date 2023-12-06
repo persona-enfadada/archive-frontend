@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import "./examList.css";
 
 export default function ExamList() {
   const { category } = useParams();
