@@ -10,13 +10,9 @@ export default function ExamList() {
 
   useEffect(() => {
     // 데이터를 가져오는 Axios 요청
-    axios
-      .post(
-        `http://ec2-3-39-9-141.ap-northeast-2.compute.amazonaws.com:8080/exam/${category}`
-      )
-      .then((response) => {
-        setData(response.data); // 받아온 데이터를 state에 저장
-      });
+    axios.post(`https://enfadada.com/exam/${category}`).then((response) => {
+      setData(response.data); // 받아온 데이터를 state에 저장
+    });
   }, [category]); // 빈 배
 
   return (

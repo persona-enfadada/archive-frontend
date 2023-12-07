@@ -11,13 +11,14 @@ export default function Detail() {
   useEffect(() => {
     // 데이터를 가져오는 Axios 요청
     axios
-      .post(
-        `http://ec2-3-39-9-141.ap-northeast-2.compute.amazonaws.com:8080/exam/detail/${pathValue}`
-      )
+      .post(`https://enfadada.com/exam/detail/${pathValue}`)
       .then((response) => {
         setData(response.data); // 받아온 데이터를 state에 저장
+      })
+      .catch((error) => {
+        console.log(error);
       });
-  }, [pathValue]); // 빈 배
+  }, [pathValue]);
 
   return (
     <iframe title="detail" src={data.imgUrl} width="100%" height="1000px" />
