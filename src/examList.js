@@ -9,11 +9,18 @@ export default function ExamList() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // 데이터를 가져오는 Axios 요청
-    axios.post(`https://enfadada.com/exam/${category}`).then((response) => {
-      setData(response.data); // 받아온 데이터를 state에 저장
-    });
+    axios
+      .post(`https://enfadada.com/exam/${category}`)
+      .then((response) => {
+        setData(response.data); // 받아온 데이터를 state에 저장
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // 데이터를 가져오는 Axios 요
   }, [category]); // 빈 배
+
+  console.log(data.length);
 
   return (
     <div className="App">
