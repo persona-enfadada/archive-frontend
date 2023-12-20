@@ -16,9 +16,7 @@ export default function Detail() {
 
     instance.interceptors.response.use(
       function (response) {
-        if (response.status === 200) {
-          setData(response.data);
-        }
+        return response;
       },
       function (error) {
         instance
@@ -29,6 +27,7 @@ export default function Detail() {
             }
           })
           .catch(() => {});
+        return Promise.reject(error);
       }
     );
 
