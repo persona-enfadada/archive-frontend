@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./examList.css";
+import { pages } from "./App";
 
 export default function ExamList() {
   const { category } = useParams();
@@ -9,9 +10,11 @@ export default function ExamList() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const instance = axios.create({
-      baseURL: "https://enfadada.com",
-    });
+    document.title = `${category}`;
+  }, [data]);
+
+  useEffect(() => {
+    const instance = axios.create({});
 
     instance.interceptors.response.use(
       function (response) {

@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { pages } from "./App";
 
 export default function Detail() {
   const { pathValue } = useParams();
@@ -9,10 +10,12 @@ export default function Detail() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    document.title = `${pages["detail"].title} - ${data.title}`;
+  }, [data]);
+
+  useEffect(() => {
     // 데이터를 가져오는 Axios 요청
-    const instance = axios.create({
-      baseURL: "https://enfadada.com",
-    });
+    const instance = axios.create({});
 
     instance.interceptors.response.use(
       function (response) {
