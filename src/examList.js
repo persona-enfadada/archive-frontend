@@ -9,18 +9,37 @@ export default function ExamList() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios
-      .post(`https://enfadada.com/exam/${category}`)
-      .then((response) => {
-        setData(response.data); // 받아온 데이터를 state에 저장
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    // 데이터를 가져오는 Axios 요
-  }, [category]); // 빈 배
+    const instance = axios.create({
+      baseURL: "https://enfadada.com",
+    });
 
-  console.log(data.length);
+    instance.interceptors.response.use(
+      function (response) {
+        if (response.status === 200) {
+          setData(response.data);
+        }
+      },
+      function (error) {
+        instance
+          .post(`/exam/${category}`)
+          .then((response) => {
+            if (response.status === 200) {
+              setData(response.data);
+            }
+          })
+          .catch(() => {});
+      }
+    );
+
+    instance
+      .post(`/exam/${category}`)
+      .then((response) => {
+        if (response.status === 200) {
+          setData(response.data);
+        }
+      })
+      .catch(() => {});
+  }, [category]);
 
   return (
     <div className="App">
