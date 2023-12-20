@@ -10,14 +10,36 @@ export default function Detail() {
 
   useEffect(() => {
     // 데이터를 가져오는 Axios 요청
-    axios
-      .post(`https://enfadada.com/exam/detail/${pathValue}`)
+    const instance = axios.create({
+      baseURL: "https://enfadada.com",
+    });
+
+    instance.interceptors.response.use(
+      function (response) {
+        if (response.status === 200) {
+          setData(response.data);
+        }
+      },
+      function (error) {
+        instance
+          .post(`/exam/detail/${pathValue}`)
+          .then((response) => {
+            if (response.status === 200) {
+              setData(response.data);
+            }
+          })
+          .catch(() => {});
+      }
+    );
+
+    instance
+      .post(`/exam/detail/${pathValue}`)
       .then((response) => {
-        setData(response.data); // 받아온 데이터를 state에 저장
+        if (response.status === 200) {
+          setData(response.data);
+        }
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch(() => {});
   }, [pathValue]);
 
   return (
