@@ -14,7 +14,9 @@ export default function ExamList() {
   }, [data]);
 
   useEffect(() => {
-    const instance = axios.create({});
+    const instance = axios.create({
+      baseURL: "https://enfadada.com",
+    });
 
     instance.interceptors.response.use(
       function (response) {
