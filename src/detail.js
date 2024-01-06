@@ -15,7 +15,9 @@ export default function Detail() {
 
   useEffect(() => {
     // 데이터를 가져오는 Axios 요청
-    const instance = axios.create({});
+    const instance = axios.create({
+      baseURL: "https://enfadada.com",
+    });
 
     instance.interceptors.response.use(
       function (response) {
